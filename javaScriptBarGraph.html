@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>JavaScript Graphs</title>
+</head>
+<body>
+
+    <div class="container">
+        <br>
+        <br>
+        <h2 align = "center">Graph Representation Is More Visually Appealing!</h2>
+          <div class="form-group">
+            <br>
+            <label for="email"><b>Enter the values seperated by a space</b></label>
+            <input type="text"class="form-control" id="num" value="10 20 30 40 50">
+            <br>
+            <button class="btn btn-primary btn-primary" id = "submit" onclick="draw()">Submit</button>
+            <button class="btn btn-primary btn-primary" id = "clear" onclick="reset()">Clear</button>
+            <br>
+            <br>
+            <canvas id="myCanvas" style="border:1px solid #c3c3c3; width: 50%;"></canvas>
+          </div>
+    </div>
+
+</body>
+<script>
+
+    function reset(){
+
+        // Clearing the input field 
+        var inputs = document.getElementsByTagName("input");
+        for(var i=0;i<inputs.length;i++)
+        inputs[i].value = '';
+
+        // Clearing the Canvas
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        window.location.reload();
+
+    }
+
+    function draw(){
+
+        // Accepting and seperating comma seperated values
+        var n = document.getElementById("num").value.split(/\s/);
+        console.log(n);
+         
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var width= 40; // bar width
+        var X = 30; // first bar position 
+        var base = 200;
+        
+        // Filling the Rectangle based on the input values
+        for (var i =0; i<n.length; i++) {
+            ctx.fillStyle = '#008080'; 
+            var h = n[i];
+            ctx.fillRect(X,canvas.height - h,width,h);
+            X +=  width+15;
+
+            // Text to display Bar number
+            ctx.fillStyle = '#4da6ff';
+            ctx.fillText('Bar '+i,X-50,canvas.height - h -10);
+        }
+            // Text to display scale 
+            ctx.fillStyle = '#000000';
+            ctx.fillText('Scale X : '+canvas.width+' Y : '+canvas.height,800,10);
+  
+    }
+    
+</script>
+</html>
