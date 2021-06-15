@@ -1,1 +1,1 @@
-# Bar_Graph_Plot
+# Plotting a Bar Graph using JavaScript
